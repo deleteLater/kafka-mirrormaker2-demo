@@ -1,0 +1,48 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaMirrorMaker2
+metadata:
+  name: local-mirror-maker-2
+spec:
+  version: 3.5.1
+  replicas: 1
+  connectCluster: "cluster-b" # Must be the target cluster
+  clusters:
+    - alias: "cluster-a" # Source cluster
+      bootstrapServers: cluster-a-kafka-bootstrap:9092
+    - alias: "cluster-b" # Target cluster
+      bootstrapServers: cluster-b-kafka-bootstrap:9092
+      config:
+        # -1 means it will use the default replication factor configured in the broker
+        config.storage.replication.factor: -1
+        offset.storage.replication.factor: -1
+        status.storage.replication.factor: -1
+  mirrors:
+    - sourceCluster: "cluster-a"
+      targetCluster: "cluster-b"
+      sourceConnector:
+        tasksMax: 1
+        config:
+          # -1 means it will use the default replication factor configured in the broker
+          replication.factor: -1
+          offset-syncs.topic.replication.factor: -1
+          sync.topic.acls.enabled: "false"
+          
+          # Override automatic renaming by adding IdentityReplicationPolicy to the source connector configuration. 
+          # With this configuration applied, topics retain their original names.
+          replication.policy.class: "org.apache.kafka.connect.mirror.IdentityReplicationPolicy"
+          
+          # Specify mirrormaker2 internal topic names
+          group.id: local-mirrormaker2-cluster
+          offset.storage.topic: local-mirrormaker2-cluster-offsets
+          config.storage.topic: local-mirrormaker2-cluster-configs
+          status.storage.topic: local-mirrormaker2-cluster-stauts
+          
+          # Frequency of topic refresh. Default is 600 (10 minutes). We change this for development purposes.
+          refresh.topics.interval.seconds: 10
+      checkpointConnector:
+        tasksMax: 1
+        config:
+          # -1 means it will use the default replication factor configured in the broker
+          checkpoints.topic.replication.factor: -1
+      topicsPattern: ".*"
+      groupsPattern: ".*"
