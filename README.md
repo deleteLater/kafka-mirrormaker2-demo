@@ -74,8 +74,26 @@ bin/kafka-console-consumer.sh --bootstrap-server cluster-b-kafka-bootstrap:9092 
 ### Setup
 
 ```shell
+# on laptop (address is 192.168.1.163), expose cluster-b-kafka
+kubectl port-forward service/cluster-b-kafka-bootstrap 9092:9092 -n kafka --address='0.0.0.0'
+
+# on pc, list remote cluster-b-kafka's topics
+kubectl -n kafka exec --stdin --tty cluster-a-kafka-0 -- /bin/bash
+./bin/kafka-topics.sh --list --bootstrap-server 192.168.1.163:9092
+
+# on pc, create remote mirror maker
 kubectl create -f remote-mirror-maker-2.yaml -n kafka
 kubectl get pod -n kafka -watch
+
+kubectl -n kafka exec --stdin --tty cluster-a-kafka-0 -- /bin/bash
+
+# produce & consume message from pc's cluster-a
+bin/kafka-console-producer.sh --bootstrap-server cluster-a-kafka-bootstrap:9092 --topic my-topic
+bin/kafka-console-consumer.sh --bootstrap-server cluster-a-kafka-bootstrap:9092 --topic my-topic --from-beginning
+
+# consumer message from laptop's cluster-b
+kubectl -n kafka exec --stdin --tty cluster-b-kafka-0 -- /bin/bash
+bin/kafka-console-consumer.sh --bootstrap-server cluster-b-kafka-bootstrap:9092 --topic my-topic --from-beginning
 ```
 
 ### Test
