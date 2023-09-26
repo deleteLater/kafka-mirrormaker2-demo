@@ -2,6 +2,13 @@
 
 ## Setup
 
+### Clone
+
+```shell
+git clone https://github.com/deleteLater/kafka-mirrormaker2-demo.git
+cd kafka-mirrormaker2-demo
+```
+
 ### Strimzi
 
 ```shell
@@ -43,6 +50,7 @@ kubectl get pod -n kafka -watch
 ```
 
 ### Remote MirrorMaker
+
 ```shell
 kubectl create -f remote-mirror-maker-2.yaml -n kafka
 kubectl get pod -n kafka -watch
