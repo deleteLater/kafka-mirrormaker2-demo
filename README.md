@@ -1,6 +1,6 @@
 # Kafka MirrorMaker 2.0 Local Demo
 
-## Setup
+## Setup Kafka Clusters
 
 ### Clone
 
@@ -42,21 +42,16 @@ kubectl get pod -n kafka --watch
 kubectl port-forward service/kafka-ui-service 8080:8080 -n kafka
 ```
 
-### Local MirrorMaker
+## Local MirrorMaker
+
+### Setup
 
 ```shell
 kubectl create -f local-mirror-maker-2.yaml -n kafka
 kubectl get pod -n kafka -watch
 ```
 
-### Remote MirrorMaker
-
-```shell
-kubectl create -f remote-mirror-maker-2.yaml -n kafka
-kubectl get pod -n kafka -watch
-```
-
-## Test Local MirrorMaker
+### Test
 
 ```shell
 kubectl -n kafka exec --stdin --tty cluster-a-kafka-0 -- /bin/bash
@@ -74,6 +69,15 @@ bin/kafka-console-consumer.sh --bootstrap-server cluster-a-kafka-bootstrap:9092 
 bin/kafka-console-consumer.sh --bootstrap-server cluster-b-kafka-bootstrap:9092 --topic my-topic --from-beginning
 ```
 
-## Test Remote MirrorMaker
+## Remote MirrorMaker
+
+### Setup
+
+```shell
+kubectl create -f remote-mirror-maker-2.yaml -n kafka
+kubectl get pod -n kafka -watch
+```
+
+### Test
 
 TODO
