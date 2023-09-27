@@ -10,7 +10,7 @@ spec:
     - alias: "cluster-a" # Source cluster
       bootstrapServers: cluster-a-kafka-bootstrap:9092
     - alias: "remote-cluster-b" # Target cluster
-      bootstrapServers: 192.168.1.93:9094
+      bootstrapServers: 192.168.1.93:9094 # this is my pc's ip address in a LAN
       config:
         # -1 means it will use the default replication factor configured in the broker
         config.storage.replication.factor: -1
