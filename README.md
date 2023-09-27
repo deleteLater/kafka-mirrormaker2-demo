@@ -123,4 +123,5 @@ Using the Kafka UI, we can
 
 - [**Kafka MirrorMaker 2 cluster configuration**](https://access.redhat.com/documentation/en-us/red_hat_amq_streams/2.4/html/configuring_amq_streams_on_openshift/assembly-deployment-configuration-str#assembly-mirrormaker-str)
 - [**Kafka Connect cluster configuration**](https://access.redhat.com/documentation/en-us/red_hat_amq_streams/2.4/html/configuring_amq_streams_on_openshift/assembly-deployment-configuration-str#assembly-kafka-connect-str)
+- [**Strimzi Examples**](https://github.com/strimzi/strimzi-kafka-operator/tree/main/examples/mirror-maker)
 - https://www.uber.com/en-JP/blog/kafka/
