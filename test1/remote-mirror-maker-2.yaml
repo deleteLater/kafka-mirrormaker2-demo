@@ -7,8 +7,8 @@ spec:
   replicas: 1
   connectCluster: "r2-aggregate" # Must be the target cluster
   clusters:
-    - alias: "r1-regional" # Source cluster
-      bootstrapServers: r1-regional-kafka-bootstrap:9092
+    - alias: "regional" # Source cluster
+      bootstrapServers: regional-kafka-bootstrap:9092
     - alias: "r2-aggregate" # Target cluster
       bootstrapServers: 192.168.1.163:9094
       config:
@@ -22,7 +22,7 @@ spec:
         config.storage.topic: remote-mirrormaker2-cluster-configs
         status.storage.topic: remote-mirrormaker2-cluster-stauts
   mirrors:
-    - sourceCluster: "r1-regional"
+    - sourceCluster: "regional"
       targetCluster: "r2-aggregate"
       sourceConnector:
         tasksMax: 1
