@@ -1,7 +1,7 @@
 apiVersion: kafka.strimzi.io/v1beta2
 kind: Kafka
 metadata:
-  name: cluster-a
+  name: r1-regional
 spec:
   kafka:
     version: 3.5.1

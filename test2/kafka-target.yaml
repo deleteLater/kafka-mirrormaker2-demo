@@ -1,7 +1,7 @@
 apiVersion: kafka.strimzi.io/v1beta2
 kind: Kafka
 metadata:
-  name: cluster-b
+  name: r2-aggregate
 spec:
   kafka:
     version: 3.5.1

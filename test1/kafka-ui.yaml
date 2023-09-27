@@ -19,13 +19,13 @@ spec:
           image: provectuslabs/kafka-ui:latest
           env:
             - name: KAFKA_CLUSTERS_0_NAME
-              value: "cluster-a"
+              value: "r1-regional"
             - name: KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS
-              value: cluster-a-kafka-bootstrap:9092
+              value: r1-regional-kafka-bootstrap:9092
             - name: KAFKA_CLUSTERS_1_NAME
-              value: "cluster-b"
+              value: "r1-aggregate"
             - name: KAFKA_CLUSTERS_1_BOOTSTRAPSERVERS
-              value: cluster-b-kafka-bootstrap:9092
+              value: r1-aggregate-kafka-bootstrap:9092
           imagePullPolicy: Always
           resources:
             requests:
