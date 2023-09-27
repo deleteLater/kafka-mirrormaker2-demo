@@ -5,12 +5,12 @@ metadata:
 spec:
   version: 3.5.1
   replicas: 1
-  connectCluster: "cluster-b" # Must be the target cluster
+  connectCluster: "aggregate" # Must be the target cluster
   clusters:
-    - alias: "cluster-a" # Source cluster
-      bootstrapServers: cluster-a-kafka-bootstrap:9092
-    - alias: "cluster-b" # Target cluster
-      bootstrapServers: cluster-b-kafka-bootstrap:9092
+    - alias: "regional" # Source cluster
+      bootstrapServers: regional-kafka-bootstrap:9092
+    - alias: "aggregate" # Target cluster
+      bootstrapServers: aggregate-kafka-bootstrap:9092
       config:
         # -1 means it will use the default replication factor configured in the broker
         config.storage.replication.factor: -1
@@ -23,8 +23,8 @@ spec:
         config.storage.topic: local-mirrormaker2-cluster-configs
         status.storage.topic: local-mirrormaker2-cluster-stauts
   mirrors:
-    - sourceCluster: "cluster-a"
-      targetCluster: "cluster-b"
+    - sourceCluster: "regional"
+      targetCluster: "aggregate"
       sourceConnector:
         tasksMax: 1
         config:
