@@ -39,7 +39,7 @@ kubectl wait kafka/cluster-b --for=condition=Ready --timeout=300s -n kafka
 kubectl create -f kafka-ui.yaml -n kafka
 kubectl get pod -n kafka --watch
 
-kubectl port-forward service/kafka-ui-service 8080:8080 -n kafka
+kubectl port-forward service/kafka-ui-service 8080:8080 -n kafka --address='0.0.0.0'
 ```
 
 ## Local MirrorMaker
