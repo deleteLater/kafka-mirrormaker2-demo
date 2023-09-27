@@ -13,7 +13,7 @@ spec:
         tls: false
       - name: external
         port: 9094
-        type: nodeport
+        type: cluster-ip
         tls: false
         configuration:
           brokers:
