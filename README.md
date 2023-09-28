@@ -19,7 +19,7 @@ And I run the `test1` folder's yaml files on my pc, and `test2` folder's yaml fi
 ### Clone
 
 ```shell
-git clone https://github.com/deleteLater/kafka-mirrormaker2-demo.git
+git clone https://github.com/featbit/kafka-mirrormaker2-demo.git
 cd kafka-mirrormaker2-demo
 cd test1 # or test2
 ```
