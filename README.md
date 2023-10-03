@@ -119,6 +119,21 @@ Using the Kafka UI, we can
 1. create a topic in cluster-a and the topic should be synced to remote-cluster-b in a short time
 2. produce a message in cluster-a and the message should be synced to remote-cluster-b
 
+## Clean up
+
+```bash
+kubectl delete all --all -n kafka
+kubectl delete namespace kafka
+
+# delete pvcs
+kubectl delete pvc -l app.kubernetes.io/name=zookeeper -n kafka
+kubectl delete pvc -l app.kubernetes.io/name=kafka -n kafka
+kubectl delete pv --all -n kafka
+
+kubectl delete -f 'https://strimzi.io/install/latest?namespace=kafka' -n kafka
+kubectl get all -A
+```
+
 ## References
 
 - [**Kafka MirrorMaker 2 cluster configuration**](https://access.redhat.com/documentation/en-us/red_hat_amq_streams/2.4/html/configuring_amq_streams_on_openshift/assembly-deployment-configuration-str#assembly-mirrormaker-str)
