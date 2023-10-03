@@ -20,7 +20,7 @@ kubectl -n kafka get deployment strimzi-cluster-operator -o jsonpath='{.spec.tem
 
 ### Test
 
-The [kafka.yaml](kafka.yaml) example shows a regular Kafka cluster backed by ZooKeeper. This example file deploys a
+The [kafka-using-nodepool.yaml](kafka-using-nodepool.yaml) example shows a regular Kafka cluster backed by ZooKeeper. This example file deploys a
 ZooKeeper cluster with 3 nodes and 2 different pools of Kafka brokers. Each of the pools has 3 brokers. The pools in the
 example use different storage configuration.
 
